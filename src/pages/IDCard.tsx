@@ -1,11 +1,10 @@
-
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { CreditCard, User, Calendar, Award } from "lucide-react";
+import { CreditCard, User, Calendar, Award, MessageSquare, RefreshCw, Check, FileInput, HelpCircle } from "lucide-react";
 
 const IDCard = () => {
   const [showPayment, setShowPayment] = useState(false);
@@ -51,7 +50,6 @@ const IDCard = () => {
   };
   
   const initiateRazorpayPayment = () => {
-    // This would integrate with Razorpay in a real implementation
     alert("Razorpay integration would be implemented here. This would open the payment gateway in a real application.");
   };
   
@@ -63,7 +61,52 @@ const IDCard = () => {
           <p className="text-xl text-gray-600 mb-8 text-center">
             Get your official pass to unlock global opportunities
           </p>
-          
+
+          <div className="mb-12">
+            <h2 className="text-2xl font-semibold text-center mb-8">How to Get Your ID Card</h2>
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+              <div className="flex flex-col items-center text-center p-4 bg-white rounded-lg shadow-md">
+                <div className="w-12 h-12 bg-youth-purple/10 rounded-full flex items-center justify-center mb-4">
+                  <FileInput className="text-youth-purple" />
+                </div>
+                <h3 className="font-medium mb-2">Step 1</h3>
+                <p className="text-gray-600 text-sm">Fill out the registration form below</p>
+              </div>
+
+              <div className="flex flex-col items-center text-center p-4 bg-white rounded-lg shadow-md">
+                <div className="w-12 h-12 bg-youth-purple/10 rounded-full flex items-center justify-center mb-4">
+                  <MessageSquare className="text-youth-purple" />
+                </div>
+                <h3 className="font-medium mb-2">Need Help?</h3>
+                <p className="text-gray-600 text-sm">Message our help desk on WhatsApp</p>
+                <a href="https://wa.me/your-number-here" className="text-youth-purple text-sm mt-2 hover:underline">Contact Support</a>
+              </div>
+
+              <div className="flex flex-col items-center text-center p-4 bg-white rounded-lg shadow-md">
+                <div className="w-12 h-12 bg-youth-purple/10 rounded-full flex items-center justify-center mb-4">
+                  <RefreshCw className="text-youth-purple" />
+                </div>
+                <h3 className="font-medium mb-2">Step 2</h3>
+                <p className="text-gray-600 text-sm">Wait 10-20 minutes and refresh the page</p>
+              </div>
+
+              <div className="flex flex-col items-center text-center p-4 bg-white rounded-lg shadow-md">
+                <div className="w-12 h-12 bg-youth-purple/10 rounded-full flex items-center justify-center mb-4">
+                  <Check className="text-youth-purple" />
+                </div>
+                <h3 className="font-medium mb-2">Step 3</h3>
+                <p className="text-gray-600 text-sm">Download your ID card and use your secret ID to unlock features</p>
+              </div>
+            </div>
+
+            <div className="mt-6 flex justify-center">
+              <div className="inline-flex items-center gap-2 text-sm text-gray-600 bg-gray-100 px-4 py-2 rounded-full">
+                <HelpCircle size={16} />
+                <span>ID card not generated? Contact our help desk for assistance</span>
+              </div>
+            </div>
+          </div>
+
           {!showPayment ? (
             <Card className="shadow-lg">
               <CardHeader>
