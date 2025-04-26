@@ -4,7 +4,8 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { CreditCard, User, Calendar, Award, MessageSquare, RefreshCw, Check, FileInput, HelpCircle } from "lucide-react";
+import { CreditCard, User, Calendar, MessageSquare, RefreshCw, Check, FileInput, HelpCircle } from "lucide-react";
+import VerticalTimeline from "@/components/VerticalTimeline";
 
 const IDCard = () => {
   const [showPayment, setShowPayment] = useState(false);
@@ -53,6 +54,33 @@ const IDCard = () => {
     alert("Razorpay integration would be implemented here. This would open the payment gateway in a real application.");
   };
   
+  const timelineSteps = [
+    {
+      icon: <FileInput className="text-youth-purple" />,
+      title: "Fill Out the Form",
+      description: "Complete the registration form below to start your application process"
+    },
+    {
+      icon: <MessageSquare className="text-youth-purple" />,
+      title: "Need Assistance?",
+      description: "Message our help desk on WhatsApp for immediate support",
+      link: {
+        text: "Contact Support",
+        url: "https://wa.me/your-number-here"
+      }
+    },
+    {
+      icon: <RefreshCw className="text-youth-purple" />,
+      title: "Wait for Processing",
+      description: "Allow 10-20 minutes for processing, then refresh the page"
+    },
+    {
+      icon: <Check className="text-youth-purple" />,
+      title: "Download Your ID Card",
+      description: "Get your ID card and use the secret ID to unlock all features"
+    }
+  ];
+
   return (
     <div className="min-h-screen bg-gray-50 py-12">
       <div className="container mx-auto px-4">
@@ -64,41 +92,8 @@ const IDCard = () => {
 
           <div className="mb-12">
             <h2 className="text-2xl font-semibold text-center mb-8">How to Get Your ID Card</h2>
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-              <div className="flex flex-col items-center text-center p-4 bg-white rounded-lg shadow-md">
-                <div className="w-12 h-12 bg-youth-purple/10 rounded-full flex items-center justify-center mb-4">
-                  <FileInput className="text-youth-purple" />
-                </div>
-                <h3 className="font-medium mb-2">Step 1</h3>
-                <p className="text-gray-600 text-sm">Fill out the registration form below</p>
-              </div>
-
-              <div className="flex flex-col items-center text-center p-4 bg-white rounded-lg shadow-md">
-                <div className="w-12 h-12 bg-youth-purple/10 rounded-full flex items-center justify-center mb-4">
-                  <MessageSquare className="text-youth-purple" />
-                </div>
-                <h3 className="font-medium mb-2">Need Help?</h3>
-                <p className="text-gray-600 text-sm">Message our help desk on WhatsApp</p>
-                <a href="https://wa.me/your-number-here" className="text-youth-purple text-sm mt-2 hover:underline">Contact Support</a>
-              </div>
-
-              <div className="flex flex-col items-center text-center p-4 bg-white rounded-lg shadow-md">
-                <div className="w-12 h-12 bg-youth-purple/10 rounded-full flex items-center justify-center mb-4">
-                  <RefreshCw className="text-youth-purple" />
-                </div>
-                <h3 className="font-medium mb-2">Step 2</h3>
-                <p className="text-gray-600 text-sm">Wait 10-20 minutes and refresh the page</p>
-              </div>
-
-              <div className="flex flex-col items-center text-center p-4 bg-white rounded-lg shadow-md">
-                <div className="w-12 h-12 bg-youth-purple/10 rounded-full flex items-center justify-center mb-4">
-                  <Check className="text-youth-purple" />
-                </div>
-                <h3 className="font-medium mb-2">Step 3</h3>
-                <p className="text-gray-600 text-sm">Download your ID card and use your secret ID to unlock features</p>
-              </div>
-            </div>
-
+            <VerticalTimeline steps={timelineSteps} />
+            
             <div className="mt-6 flex justify-center">
               <div className="inline-flex items-center gap-2 text-sm text-gray-600 bg-gray-100 px-4 py-2 rounded-full">
                 <HelpCircle size={16} />
