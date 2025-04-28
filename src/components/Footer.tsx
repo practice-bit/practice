@@ -1,5 +1,6 @@
-
 import { Link } from "react-router-dom";
+import { FaWhatsapp } from "react-icons/fa";
+import React from "react";
 
 const Footer = () => {
   return (
@@ -12,7 +13,7 @@ const Footer = () => {
               Empowering youth globally through mentorship, opportunities, and guidance.
             </p>
           </div>
-          
+
           <div>
             <h4 className="text-lg font-semibold mb-4">Quick Links</h4>
             <ul className="space-y-2">
@@ -22,7 +23,7 @@ const Footer = () => {
               <li><Link to="/services" className="text-gray-300 hover:text-youth-purple transition-colors">Services</Link></li>
             </ul>
           </div>
-          
+
           <div>
             <h4 className="text-lg font-semibold mb-4">Our Services</h4>
             <ul className="space-y-2">
@@ -32,7 +33,7 @@ const Footer = () => {
               <li><Link to="/services#life-lab" className="text-gray-300 hover:text-youth-purple transition-colors">Life Lab</Link></li>
             </ul>
           </div>
-          
+
           <div>
             <h4 className="text-lg font-semibold mb-4">Connect With Us</h4>
             <div className="flex space-x-4">
@@ -54,8 +55,15 @@ const Footer = () => {
             </p>
           </div>
         </div>
-        
+
         <div className="mt-8 pt-6 border-t border-gray-700 text-center text-gray-400">
+          <a
+            href="https://wa.me/message/UDZ5KXII2XDAM1"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="fixed bottom-20 right-4 bg-green-500 text-white p-3 rounded-full shadow-lg hover:bg-green-600 transition-colors z-50"          >
+            <FaWhatsapp size={30} />
+          </a>
           <p>&copy; {new Date().getFullYear()} Youth Empire. All rights reserved.</p>
         </div>
       </div>

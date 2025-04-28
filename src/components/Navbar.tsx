@@ -24,6 +24,7 @@ const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const location = useLocation();
   const [isLoggedIn, setIsLoggedIn] = useState(false); // Will be replaced with actual auth
+  const [isDialogLoginOpen, setIsDialogLoginOpen] = useState(false);
   const { toast } = useToast();
 
   const toggleMenu = () => {
@@ -31,7 +32,7 @@ const Navbar = () => {
   };
 
   const toggleLogin = () => {
-    setIsLoggedIn(!isLoggedIn); // Simple toggle for demo purposes
+    setIsDialogLoginOpen(!isDialogLoginOpen);
   };
 
   const navItems = [
@@ -70,7 +71,7 @@ const Navbar = () => {
             ))}
           </div>
           
-          <Dialog>
+          <Dialog open={isDialogLoginOpen} onOpenChange={setIsDialogLoginOpen}>
             <DialogTrigger asChild>
               <Button
                 variant="ghost"
@@ -115,7 +116,7 @@ const Navbar = () => {
                   </Label>
                   <Input id="email" className="col-span-3" />
                 </div>
-                <Button onClick={toggleLogin}>Submit</Button>
+                <Button >Submit</Button>
               </div>
             </DialogContent>
           </Dialog>
@@ -148,7 +149,7 @@ const Navbar = () => {
                 {item.name}
               </Link>  
             ))}
-            <Dialog>
+             <Dialog open={isDialogLoginOpen} onOpenChange={setIsDialogLoginOpen}>
               <DialogTrigger asChild>
                 <Button
                   variant="ghost"
@@ -196,7 +197,7 @@ const Navbar = () => {
                     </Label>
                     <Input id="email" className="col-span-3" />
                   </div>
-                  <Button onClick={toggleLogin}>Submit</Button>
+                  <Button >Submit</Button>
                 </div>
               </DialogContent>
             </Dialog>

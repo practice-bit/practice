@@ -3,7 +3,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route,Navigate } from "react-router-dom";
 import Layout from "@/components/ui/layout";
 import Home from "./pages/Home";
 import IDCard from "./pages/IDCard";
@@ -23,6 +23,7 @@ const App = () => (
       <BrowserRouter>
         <Layout>
           <Routes>
+            <Route index element={<Navigate to="/"/>} />
             <Route path="/" element={<Home />} />
             <Route path="/id-card" element={<IDCard />} />
             <Route path="/partners" element={<Partners />} />
