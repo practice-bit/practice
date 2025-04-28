@@ -1,9 +1,20 @@
-
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { useToast } from "@/hooks/use-toast";
+import {
   Menu,
+
   LogIn,
   LogOut,
   X,
@@ -13,6 +24,7 @@ const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const location = useLocation();
   const [isLoggedIn, setIsLoggedIn] = useState(false); // Will be replaced with actual auth
+  const { toast } = useToast();
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -37,7 +49,7 @@ const Navbar = () => {
         <Link to="/" className="flex items-center space-x-2">
           <span className="text-2xl font-bold bg-gradient-to-r from-youth-purple to-youth-dark-purple bg-clip-text text-transparent">
             Youth Empire
-          </span>
+          </span>{" "}
         </Link>
 
         {/* Desktop Navigation */}
@@ -45,11 +57,11 @@ const Navbar = () => {
           <div className="flex space-x-6">
             {navItems.map((item) => (
               <Link 
-                key={item.name} 
+                key={item.name}
                 to={item.path}
                 className={`text-sm font-medium hover:text-youth-purple transition-colors ${
-                  location.pathname === item.path 
-                    ? "text-youth-purple border-b-2 border-youth-purple" 
+                  location.pathname === item.path
+                    ? "text-youth-purple border-b-2 border-youth-purple"
                     : "text-gray-600"
                 }`}
               >
@@ -58,23 +70,56 @@ const Navbar = () => {
             ))}
           </div>
           
-          <Button 
-            variant="ghost" 
-            className="flex items-center gap-2 text-gray-700 hover:text-youth-purple hover:bg-gray-100"
-            onClick={toggleLogin}
-          >
-            {isLoggedIn ? (
-              <>
-                <LogOut size={18} />
-                <span>Log Out</span>
-              </>
-            ) : (
-              <>
-                <LogIn size={18} />
-                <span>Log In</span>
-              </>
-            )}
-          </Button>
+          <Dialog>
+            <DialogTrigger asChild>
+              <Button
+                variant="ghost"
+                className="flex items-center gap-2 text-gray-700 hover:text-youth-purple hover:bg-gray-100"
+              >
+                {isLoggedIn ? (
+                  <>
+                    <LogOut size={18} />
+                    <span>Log Out</span>
+                  </>
+                ) : (
+                  <>
+                    <LogIn size={18} />
+                    <span>Log In</span>
+                  </>
+                )}
+              </Button>
+            </DialogTrigger>
+            <DialogContent className="sm:max-w-[425px]">
+              <DialogHeader>
+                <DialogTitle>Sign In</DialogTitle>
+                <DialogDescription>
+                  Please provide your details to sign in.
+                </DialogDescription>
+              </DialogHeader>
+              <div className="grid gap-4 py-4">
+                <div className="grid grid-cols-4 items-center gap-4">
+                  <Label htmlFor="name" className="text-right">
+                    Name
+                  </Label>
+                  <Input id="name" className="col-span-3" />
+                </div>
+                <div className="grid grid-cols-4 items-center gap-4">
+                  <Label htmlFor="phone" className="text-right">
+                    Phone Number
+                  </Label>
+                  <Input id="phone" className="col-span-3" />
+                </div>
+                <div className="grid grid-cols-4 items-center gap-4">
+                  <Label htmlFor="email" className="text-right">
+                    Email
+                  </Label>
+                  <Input id="email" className="col-span-3" />
+                </div>
+                <Button onClick={toggleLogin}>Submit</Button>
+              </div>
+            </DialogContent>
+          </Dialog>
+
         </div>
 
         {/* Mobile Navigation Trigger */}
@@ -101,31 +146,63 @@ const Navbar = () => {
                 onClick={() => setIsMenuOpen(false)}
               >
                 {item.name}
-              </Link>
+              </Link>  
             ))}
-            <Button 
-              variant="ghost" 
-              className="flex items-center gap-2 justify-start"
-              onClick={() => {
-                toggleLogin();
-                setIsMenuOpen(false);
-              }}
-            >
-              {isLoggedIn ? (
-                <>
-                  <LogOut size={18} />
-                  <span>Log Out</span>
-                </>
-              ) : (
-                <>
-                  <LogIn size={18} />
-                  <span>Log In</span>
-                </>
-              )}
-            </Button>
+            <Dialog>
+              <DialogTrigger asChild>
+                <Button
+                  variant="ghost"
+                  className="flex items-center gap-2 justify-start"
+                  onClick={() => {
+                    setIsMenuOpen(false);
+                  }}
+                >
+                  {isLoggedIn ? (
+                    <>
+                      <LogOut size={18} />
+                      <span>Log Out</span>
+                    </>
+                  ) : (
+                    <>
+                      <LogIn size={18} />
+                      <span>Log In</span>
+                    </>
+                  )}
+                </Button>
+              </DialogTrigger>
+              <DialogContent className="sm:max-w-[425px]">
+                <DialogHeader>
+                  <DialogTitle>Sign In</DialogTitle>
+                  <DialogDescription>
+                    Please provide your details to sign in.
+                  </DialogDescription>
+                </DialogHeader>
+                <div className="grid gap-4 py-4">
+                  <div className="grid grid-cols-4 items-center gap-4">
+                    <Label htmlFor="name" className="text-right">
+                      Name
+                    </Label>
+                    <Input id="name" className="col-span-3" />
+                  </div>
+                  <div className="grid grid-cols-4 items-center gap-4">
+                    <Label htmlFor="phone" className="text-right">
+                      Phone Number
+                    </Label>
+                    <Input id="phone" className="col-span-3" />
+                  </div>
+                  <div className="grid grid-cols-4 items-center gap-4">
+                    <Label htmlFor="email" className="text-right">
+                      Email
+                    </Label>
+                    <Input id="email" className="col-span-3" />
+                  </div>
+                  <Button onClick={toggleLogin}>Submit</Button>
+                </div>
+              </DialogContent>
+            </Dialog>
           </div>
         </div>
-      )}
+      )} 
     </nav>
   );
 };
